@@ -1,13 +1,56 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  src:  local('NunitoSans-SemiBold')
+        url(./assets/fonts/NUNITOSANS-SEMIBOLD.TTF) format('ttf')
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-weight: 300;
+  src:  local('NunitoSans-Light')
+        url(./assets/fonts/NUNITOSANS-LIGHT.TTF) format('ttf')
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-weight: 800;
+  src:  local('NunitoSans-ExtraBold')
+        url(./assets/fonts/NUNITOSANS-EXTRABOLD.TTF) format('ttf')
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Nunito Sans', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: inherit;
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  height: 100%;
+  padding: 0 80px;
 }
