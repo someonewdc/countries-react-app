@@ -26,7 +26,7 @@ const StyledContentDropdown = styled.button`
 
 
 export const ContentDropdown = () => {
-  const [isListHidden, hideList] = useState(false)
+  const [isListHidden, hideList] = useState(true)
 
   const dropdownBtnHandler = () => {
     hideList(!isListHidden)

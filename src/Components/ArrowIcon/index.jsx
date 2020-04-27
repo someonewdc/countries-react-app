@@ -12,6 +12,6 @@ const StyledArrowIcon = styled(Icon)`
 export const ArrowIcon = ({ color, rotated }) => (
   <StyledArrowIcon
     color={color}
-    transform={rotated ? 'rotate(180)' : 'rotate(0)'} 
+    transform={rotated ? 'rotate(0)' : 'rotate(180)'} 
   />
 )

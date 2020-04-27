@@ -1,5 +1,4 @@
 import React from 'react'
-// import './DropdownList.scss'
 import styled from 'styled-components'
 
 const DropdownListWrapper = styled.ul`
