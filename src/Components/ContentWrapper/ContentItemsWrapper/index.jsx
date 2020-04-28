@@ -1,40 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ContentItem } from './ContentItem';
-import * as axios from 'axios'
+import { Loader } from '../../Loader'
+import axios from 'axios'
 
 const StyledContentItemsWrapper = styled.ul`
   padding-top: 45px;
   display: flex;
   flex-wrap: wrap;
-  // justify-content: space-between;
+`
+
+const LoaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 225px);
 `
 
 export const ContentItemsWrapper = () => {
   const [countries, setCountries] = useState([])
 
+  const requestParams = ['name', 'capital', 'population' , 'flag', 'region']
+
   useEffect(() => {
-    async function getData() {
-      try {
-        const response = await axios.get('https://restcountries.eu/rest/v2/all')
-        const { data } = response
-        setCountries([...countries, ...data])
-      } catch(e) {
-        console.log(e)
-      }
-    }
     getData()
-    window.addEventListener('scroll', handleScroll)
   }, [])
 
-  function handleScroll() {
-    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+  async function getData() {
+    try {
+      const response = await axios({
+        method: 'GET',
+        url: 'https://restcountries.eu/rest/v2/',
+        params: { fields: requestParams.join(';') }
+      })
+      const { data } = response
+      setCountries(prevState => [...prevState, ...data])
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   return (
     <StyledContentItemsWrapper>
-      {
-        countries.map(({name, 
+      { countries.map(({
+          name, 
           population, 
           region, 
           capital, 
@@ -49,14 +59,6 @@ export const ContentItemsWrapper = () => {
           />
         ))
       }
-      {/* 
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem /> */}
     </StyledContentItemsWrapper>
   )
 }

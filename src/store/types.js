@@ -1,0 +1,3 @@
+export const SET_LOADER = 'SET_LOADER'
+export const REMOVE_LOADER = 'REMOVE_LOADER'
+export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT'

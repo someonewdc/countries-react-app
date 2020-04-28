@@ -34,9 +34,6 @@ const ItemTitle = styled.h4`
   font-weight: 600;
 `
 
-const ItemDescriptionWrapper = styled.div`
-`
-
 const ItemDecription = styled.p`
   font-size: 14px;
   font-weight: 600;
@@ -72,11 +69,15 @@ export const ContentItem = ({
       <ItemContent>
         <ItemTitle>{name}</ItemTitle>
         <div>
-          <ItemDecription>Population: 
-            <span>{formatedPopulation(population) !== '0' ? formatedPopulation(population) : 'No information'}</span>
+          <ItemDecription>
+            Population: <span>{formatedPopulation(population) !== '0' ? formatedPopulation(population) : 'No information'}</span>
           </ItemDecription>
-          <ItemDecription>Region: <span>{region || 'No information'}</span></ItemDecription>
-          <ItemDecription>Capital: <span>{capital || 'No information'}</span></ItemDecription>
+          <ItemDecription>
+            Region: <span>{region || 'No information'}</span>
+          </ItemDecription>
+          <ItemDecription>
+            Capital: <span>{capital || 'No information'}</span>
+          </ItemDecription>
         </div>
       </ItemContent>
     </StyledContentItem>

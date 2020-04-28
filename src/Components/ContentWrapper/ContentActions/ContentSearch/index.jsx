@@ -1,6 +1,8 @@
 import React from 'react'
 import { SearchIcon } from '../../../SearchIcon';
 import styled from 'styled-components'
+import { connect } from 'react-redux';
+import { setNewSearchText } from '../../../../store/Countries/actions/countriesActionCreators';
 
 const StyledContentSearch = styled.form`
   position: relative;
@@ -13,9 +15,11 @@ const StyledContentSearch = styled.form`
   overflow: hidden;
 `
 
-const SearchBtn = styled.button`
+const SearchIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 15%;
-  cursor: pointer;
 `
 
 const SearchInput = styled.input`
@@ -32,13 +36,28 @@ const SearchInput = styled.input`
   }
 `
 
-export const ContentSearch = () => {
+const ContentSearch = ({ searchText, setNewSearchText }) => {
   return (
     <StyledContentSearch>
-      <SearchBtn>
+      <SearchIconWrapper>
         <SearchIcon color={'#fff'}/>
-      </SearchBtn>
-      <SearchInput placeholder="Search for a country..."></SearchInput>
+      </SearchIconWrapper>
+      <SearchInput 
+        value={searchText}
+        type="text"
+        placeholder="Search for a country..." 
+        onChange={e => setNewSearchText(e.target.value)}
+      />
     </StyledContentSearch>
   )
 }
+
+const mapStateToProps = ({ countriesState }) => ({
+  searchText: countriesState.searchText
+})
+
+const mapDispatchToProps = dispatch => ({
+  setNewSearchText: text => dispatch(setNewSearchText(text))
+})
+
+export const ConnectedContentSearch = connect(mapStateToProps, mapDispatchToProps)(ContentSearch)

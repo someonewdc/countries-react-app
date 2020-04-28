@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContentSearch } from './ContentSearch';
+import { ConnectedContentSearch } from './ContentSearch';
 import { ContentDropdown } from './ContentDropdown';
 import styled from 'styled-components'
 
@@ -11,7 +11,7 @@ const StyledContentActions = styled.div`
 export const ContentActions = () => {
   return (
     <StyledContentActions>
-      <ContentSearch />
+      <ConnectedContentSearch/>
       <ContentDropdown />
     </StyledContentActions>
   )
