@@ -61,7 +61,6 @@ export const ContentItem = ({
     return result.join('').trim().split('').reverse().join('')
   }
 
-  
 
   return (
     <StyledContentItem>

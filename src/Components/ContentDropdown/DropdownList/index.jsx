@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const DropdownListWrapper = styled.ul`
   position: absolute;
   bottom: -170px;
@@ -25,14 +26,22 @@ const DropDownListItem = styled.li`
   }
 `
 
-export const DropdownList = () => {
-  const continents = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+export const DropdownList = ({ setRegion, dropdownBtnHandler, setSearchText }) => {
+  const continents = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+
+  const dropDownClickHandler = (continent) => {
+    setRegion(continent)
+    setSearchText('')
+    dropdownBtnHandler()
+  }
+
   return (
     <DropdownListWrapper>
       {
         continents.map((continent, index) => (
           <DropDownListItem
             key={`${continent}${index}`}
+            onClick={() => dropDownClickHandler(continent)}
           >
             {continent}
           </DropDownListItem>

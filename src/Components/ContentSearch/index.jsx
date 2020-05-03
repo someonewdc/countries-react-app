@@ -1,8 +1,8 @@
-import React from 'react'
-import { SearchIcon } from '../../../SearchIcon';
+import React, { useEffect } from 'react'
+import { SearchIcon } from '../SearchIcon';
 import styled from 'styled-components'
-import { connect } from 'react-redux';
-import { setNewSearchText } from '../../../../store/Countries/actions/countriesActionCreators';
+import { useDispatch } from 'react-redux'
+import { fetchCountriesAC } from '../../store/actionCreators';
 
 const StyledContentSearch = styled.form`
   position: relative;
@@ -36,9 +36,23 @@ const SearchInput = styled.input`
   }
 `
 
-const ContentSearch = ({ searchText, setNewSearchText }) => {
+export const ContentSearch = ({ searchText, setSearchText, setRegion }) => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (searchText) {
+      dispatch(fetchCountriesAC('name', searchText))
+    }
+  }, [searchText, dispatch])
+
+  const inputHandler = (e) => {
+    setSearchText(e.target.value)
+    setRegion('')
+  }
+
   return (
-    <StyledContentSearch>
+    <StyledContentSearch onSubmit={e => e.preventDefault()}>
       <SearchIconWrapper>
         <SearchIcon color={'#fff'}/>
       </SearchIconWrapper>
@@ -46,18 +60,9 @@ const ContentSearch = ({ searchText, setNewSearchText }) => {
         value={searchText}
         type="text"
         placeholder="Search for a country..." 
-        onChange={e => setNewSearchText(e.target.value)}
+        onChange={e => inputHandler(e)}
       />
     </StyledContentSearch>
   )
 }
 
-const mapStateToProps = ({ countriesState }) => ({
-  searchText: countriesState.searchText
-})
-
-const mapDispatchToProps = dispatch => ({
-  setNewSearchText: text => dispatch(setNewSearchText(text))
-})
-
-export const ConnectedContentSearch = connect(mapStateToProps, mapDispatchToProps)(ContentSearch)

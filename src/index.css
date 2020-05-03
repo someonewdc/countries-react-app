@@ -60,6 +60,10 @@ li {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1440px;
