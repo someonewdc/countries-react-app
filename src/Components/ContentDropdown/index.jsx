@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ArrowIcon } from '../ArrowIcon';
 import { DropdownList } from './DropdownList';
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux';
-import { fetchCountriesAC } from '../../store/actionCreators';
+import { useSelector } from 'react-redux';
 
 const DropdownWrapper = styled.div`
   position: relative;
@@ -25,9 +24,7 @@ const StyledContentDropdown = styled.button`
   letter-spacing: 0.3px;
 `
 
-
-
-export const ContentDropdown = ({ region, setRegion, setSearchText }) => {
+export const ContentDropdown = () => {
 
   const [listHidden, toggleList] = useState(true)
 
@@ -35,18 +32,12 @@ export const ContentDropdown = ({ region, setRegion, setSearchText }) => {
     toggleList(!listHidden)
   }
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (region) {
-      dispatch(fetchCountriesAC('region', region))
-    }
-  }, [region, dispatch])
+  const region = useSelector(({ mainPage }) => mainPage.region)
 
   return (
     <DropdownWrapper>
       <StyledContentDropdown onClick={dropdownBtnHandler}>
-        {region ? region : 'Filter by Region' }
+        {region ? region : 'Filter by Region'}
         <ArrowIcon 
           color={'#fff'}
           rotated={listHidden}
@@ -55,8 +46,6 @@ export const ContentDropdown = ({ region, setRegion, setSearchText }) => {
       {
         !listHidden && 
           <DropdownList 
-            setRegion={setRegion} 
-            setSearchText={setSearchText}
             dropdownBtnHandler={dropdownBtnHandler}
           />
       }

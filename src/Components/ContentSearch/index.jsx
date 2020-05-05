@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SearchIcon } from '../SearchIcon';
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
-import { fetchCountriesAC } from '../../store/actionCreators';
+import { useDispatch, useSelector } from 'react-redux'
+import { setSearchText } from '../../store/main-page/actions'
 
 const StyledContentSearch = styled.form`
   position: relative;
@@ -36,20 +36,10 @@ const SearchInput = styled.input`
   }
 `
 
-export const ContentSearch = ({ searchText, setSearchText, setRegion }) => {
+export const ContentSearch = () => {
 
+  const searchText = useSelector(({ mainPage }) => mainPage.searchText)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (searchText) {
-      dispatch(fetchCountriesAC('name', searchText))
-    }
-  }, [searchText, dispatch])
-
-  const inputHandler = (e) => {
-    setSearchText(e.target.value)
-    setRegion('')
-  }
 
   return (
     <StyledContentSearch onSubmit={e => e.preventDefault()}>
@@ -57,10 +47,10 @@ export const ContentSearch = ({ searchText, setSearchText, setRegion }) => {
         <SearchIcon color={'#fff'}/>
       </SearchIconWrapper>
       <SearchInput 
-        value={searchText}
+        value={searchText}  
+        onChange={e => dispatch(setSearchText(e.target.value))}
         type="text"
         placeholder="Search for a country..." 
-        onChange={e => inputHandler(e)}
       />
     </StyledContentSearch>
   )

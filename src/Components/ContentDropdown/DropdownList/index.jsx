@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux';
+import { setRegion } from '../../../store/main-page/actions';
 
 
 const DropdownListWrapper = styled.ul`
@@ -26,14 +28,15 @@ const DropDownListItem = styled.li`
   }
 `
 
-export const DropdownList = ({ setRegion, dropdownBtnHandler, setSearchText }) => {
+export const DropdownList = ({ dropdownBtnHandler }) => {
   const continents = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
-  const dropDownClickHandler = (continent) => {
-    setRegion(continent)
-    setSearchText('')
+  const dropDownClickHandler = continent => {
     dropdownBtnHandler()
+    dispatch(setRegion(continent))
   }
+  
+  const dispatch = useDispatch()
 
   return (
     <DropdownListWrapper>

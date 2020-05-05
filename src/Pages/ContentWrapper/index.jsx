@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ContentItemsWrapper } from '../../Components/ContentItemsWrapper'
 import { ContentSearch } from '../../Components/ContentSearch'
@@ -18,27 +18,14 @@ const ContentActions = styled.div`
   justify-content: space-between;
 `
 
-export const ContentWrapper = () => {
-  const [searchText, setSearchText] = useState('')
-  const [region, setRegion] = useState('')
-
-  return (
+export const ContentWrapper = () => (
     <StyledContentWrapper>
       <div className="container">
         <ContentActions>
-          <ContentSearch 
-            searchText={searchText} 
-            setSearchText={setSearchText} 
-            setRegion={setRegion}
-          />
-          <ContentDropdown 
-            region={region}
-            setRegion={setRegion} 
-            setSearchText={setSearchText}
-           />
+          <ContentSearch />
+          <ContentDropdown />
         </ContentActions>
         <ContentItemsWrapper />
       </div>
     </StyledContentWrapper>
-  )
-}
+)
