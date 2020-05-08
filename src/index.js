@@ -5,18 +5,21 @@ import App from './App';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { rootReducer } from './store/rootReducer'
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga'
+import { watchRequestCountries } from './store/sagas/main-saga';
+
+const sagaMiddleware = createSagaMiddleware()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(
-  applyMiddleware(thunk)
+  applyMiddleware(sagaMiddleware)
 ));
+
+sagaMiddleware.run(watchRequestCountries)
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

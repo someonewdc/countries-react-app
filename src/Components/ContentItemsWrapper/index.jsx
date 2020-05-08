@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ContentItem } from './ContentItem';
 import { Loader } from '../Loader'
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCountriesAC } from '../../store/main-page/actions';
+import { useSelector } from 'react-redux';
 
 const StyledContentItemsWrapper = styled.ul`
   min-height: calc(100vh - 180px);
@@ -22,14 +21,9 @@ const LoaderWrapper = styled.div`
 
 export const ContentItemsWrapper = () => {
 
-  const dispatch = useDispatch()
-
   const loading = useSelector(({ mainPage }) => mainPage.loading)
-  const countries = useSelector(({ mainPage }) => mainPage.countries)
+  const countries = useSelector(({ mainPage }) => mainPage.showingCountries)
 
-  useEffect(() => {
-    dispatch(fetchCountriesAC())
-  }, [dispatch])
 
   if (loading) return (
     <StyledContentItemsWrapper>

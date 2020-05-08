@@ -1,47 +1,52 @@
-import { REQUEST_COUNTRIES, RECIEVE_COUNTRIES, INVALIDATE_COUNTRIES, SET_COUNTRIES, SET_SEARCH_TEXT, SET_REGION } from "../types";
+import * as types from '../types'
+import { compareNames } from "../../utils/compareNames";
 
 const initialState = {
   countries: [],
+  showingCountries: [],
   loading: false,
   searchText: '',
   region: '',
   error: false,
+  isPlaceholder: true,
 }
 
 export const mainPageReducer = (state = initialState, { type, payload }) => {
   switch(type) {
-    case REQUEST_COUNTRIES: 
+    case types.REQUEST_COUNTRIES: 
       return {
         ...state,
         error: false,
         loading: true
       }
-    case RECIEVE_COUNTRIES: 
+    case types.RECIEVE_COUNTRIES: 
       return {
         ...state,
         error: false,
-        loading: false
+        loading: false,
+        countries: payload
       }
-    case INVALIDATE_COUNTRIES:
+    case types.INVALIDATE_COUNTRIES:
       return {
         ...state,
         error: true,
         loading: false
       }
-    case SET_SEARCH_TEXT:
+    case types.SET_SEARCH_TEXT:
       return {
         ...state,
-        searchText: payload
+        searchText: payload,
+        showingCountries: payload ? compareNames(state.countries, payload) : [],
+        isPlaceholder: !payload ? true : false, 
+        region: ''
       }
-    case SET_REGION: 
+    case types.SET_REGION: 
       return {
         ...state,
-        region: payload
-      }
-    case SET_COUNTRIES:
-      return {
-        ...state,
-        countries: payload
+        region: payload,
+        showingCountries: state.countries.filter(country => country.region === payload),
+        searchText: '',
+        isPlaceholder: false
       }
     default: 
       return state

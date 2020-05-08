@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { ContentItemsWrapper } from '../../Components/ContentItemsWrapper'
 import { ContentSearch } from '../../Components/ContentSearch'
 import { ContentDropdown } from '../../Components/ContentDropdown'
+import { ContentError } from '../../Components/NetworkError';
+import { ContentPlaceholder } from '../../Components/ContentPlaceholder';
+import { useSelector } from 'react-redux';
 
 const StyledContentWrapper = styled.main`
   width: 100%;
@@ -18,14 +21,22 @@ const ContentActions = styled.div`
   justify-content: space-between;
 `
 
-export const ContentWrapper = () => (
+export const ContentWrapper = () => {  
+
+  const error = useSelector(({ mainPage }) => mainPage.error)
+  const isPlaceholder = useSelector(({ mainPage }) => mainPage.isPlaceholder)
+
+  return (
     <StyledContentWrapper>
       <div className="container">
         <ContentActions>
           <ContentSearch />
           <ContentDropdown />
         </ContentActions>
-        <ContentItemsWrapper />
+        {error 
+          ? <ContentError />
+          : isPlaceholder ? <ContentPlaceholder /> : <ContentItemsWrapper />
+        }
       </div>
     </StyledContentWrapper>
-)
+)}

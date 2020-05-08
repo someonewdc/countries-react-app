@@ -28,8 +28,8 @@ const StyledLink = styled(Link)`
 `
 
 export const NoMatch = () => (
-<StyledNoMatch>
-  <span>404</span>Page not found
-  <StyledLink to="/">Main page</StyledLink>
-</StyledNoMatch>
+  <StyledNoMatch>
+    <span>404</span>Page not found
+    <StyledLink to="/">Main page</StyledLink>
+  </StyledNoMatch>
 )
