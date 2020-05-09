@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ContentItemsWrapper } from '../../Components/ContentItemsWrapper'
-import { ContentSearch } from '../../Components/ContentSearch'
-import { ContentDropdown } from '../../Components/ContentDropdown'
 import { ContentError } from '../../Components/NetworkError';
-import { ContentPlaceholder } from '../../Components/ContentPlaceholder';
 import { useSelector } from 'react-redux';
+import { HomeSearch } from '../../Components/HomeSearch';
+import { HomeDropdown } from '../../Components/HomeDropdown';
+import { HomePlaceholder } from '../../Components/HomePlaceholder';
+import { HomeItemsWrapper } from '../../Components/HomeItemsWrapper';
 
-const StyledContentWrapper = styled.main`
+const StyledHomeWrapper = styled.main`
   width: 100%;
   height: 100%;
   padding-top: 45px;
@@ -21,22 +21,22 @@ const ContentActions = styled.div`
   justify-content: space-between;
 `
 
-export const ContentWrapper = () => {  
+export const HomeWrapper = () => {  
 
   const error = useSelector(({ mainPage }) => mainPage.error)
   const isPlaceholder = useSelector(({ mainPage }) => mainPage.isPlaceholder)
 
   return (
-    <StyledContentWrapper>
+    <StyledHomeWrapper>
       <div className="container">
         <ContentActions>
-          <ContentSearch />
-          <ContentDropdown />
+          <HomeSearch />
+          <HomeDropdown />
         </ContentActions>
         {error 
           ? <ContentError />
-          : isPlaceholder ? <ContentPlaceholder /> : <ContentItemsWrapper />
+          : isPlaceholder ? <HomePlaceholder /> : <HomeItemsWrapper />
         }
       </div>
-    </StyledContentWrapper>
+    </StyledHomeWrapper>
 )}

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { requestCountries } from '../../store/main-page/actions';
+import { Loader } from '../Loader';
 
 const StyledPlaceholder = styled.div`
   display: flex;
@@ -13,13 +14,31 @@ const StyledPlaceholder = styled.div`
   font-size: 30px;
 `
 
-export const ContentPlaceholder = () => {
+const LoaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 180px);
+`
+
+export const HomePlaceholder = () => {
 
   const dispatch = useDispatch()
+
+  const loading = useSelector(({ mainPage }) => mainPage.loading)
 
   useEffect(() => {
     dispatch(requestCountries())
   }, [dispatch])
+
+  if (loading) {
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    )
+  }
 
   return (
   <StyledPlaceholder>

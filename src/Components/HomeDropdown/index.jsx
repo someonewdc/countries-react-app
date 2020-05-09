@@ -8,11 +8,10 @@ const DropdownWrapper = styled.div`
   position: relative;
 `
 
-const StyledContentDropdown = styled.button`
+const StyledHomeDropdown = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 200px;
   height: 55px;
   padding: 20px;
@@ -20,11 +19,10 @@ const StyledContentDropdown = styled.button`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   cursor: pointer;
-
   letter-spacing: 0.3px;
 `
 
-export const ContentDropdown = () => {
+export const HomeDropdown = () => {
 
   const [listHidden, toggleList] = useState(true)
 
@@ -36,13 +34,13 @@ export const ContentDropdown = () => {
 
   return (
     <DropdownWrapper>
-      <StyledContentDropdown onClick={dropdownBtnHandler}>
+      <StyledHomeDropdown onClick={dropdownBtnHandler}>
         {region ? region : 'Filter by Region'}
         <ArrowIcon 
           color={'#fff'}
           rotated={listHidden}
         />
-      </StyledContentDropdown>
+      </StyledHomeDropdown>
       {
         !listHidden && 
           <DropdownList 

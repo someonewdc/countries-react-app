@@ -7,7 +7,7 @@ const initialState = {
   loading: false,
   searchText: '',
   region: '',
-  error: false,
+  error: null,
   isPlaceholder: true,
 }
 

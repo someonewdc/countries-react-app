@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ContentItem } from './ContentItem';
 import { Loader } from '../Loader'
 import { useSelector } from 'react-redux';
+import { HomeItem } from './HomeItem';
 
-const StyledContentItemsWrapper = styled.ul`
+const StyledHomeItemsWrapper = styled.ul`
   min-height: calc(100vh - 180px);
   padding-top: 45px;
   display: flex;
@@ -19,38 +19,41 @@ const LoaderWrapper = styled.div`
   height: calc(100vh - 225px);
 `
 
-export const ContentItemsWrapper = () => {
+export const HomeItemsWrapper = () => {
 
   const loading = useSelector(({ mainPage }) => mainPage.loading)
   const countries = useSelector(({ mainPage }) => mainPage.showingCountries)
 
 
   if (loading) return (
-    <StyledContentItemsWrapper>
+    <StyledHomeItemsWrapper>
       <LoaderWrapper>
         <Loader />
       </LoaderWrapper>
-    </StyledContentItemsWrapper>
+    </StyledHomeItemsWrapper>
   )
 
   return (
-    <StyledContentItemsWrapper>
+    <StyledHomeItemsWrapper>
       { countries.map(({
           name, 
           population, 
           region, 
           capital, 
-          flag }, index) => (
-          <ContentItem 
+          flag,
+          alpha3Code
+         }, index) => (
+          <HomeItem 
             key={`${name}${index}`}
             name={name}
             population={population}
             region={region}
             capital={capital}
             flag={flag}
+            alpha3Code={alpha3Code}
           />
         ))
       }
-    </StyledContentItemsWrapper>
+    </StyledHomeItemsWrapper>
   )
 }

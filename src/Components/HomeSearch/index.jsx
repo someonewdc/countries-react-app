@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchText } from '../../store/main-page/actions'
 
-const StyledContentSearch = styled.form`
+const StyledHomeSearch = styled.form`
   position: relative;
   display: flex;
   width: 480px;
   height: 55px;
   background: hsl(209, 23%, 22%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   overflow: hidden;
 `
@@ -36,13 +36,13 @@ const SearchInput = styled.input`
   }
 `
 
-export const ContentSearch = () => {
+export const HomeSearch = () => {
 
   const searchText = useSelector(({ mainPage }) => mainPage.searchText)
   const dispatch = useDispatch()
 
   return (
-    <StyledContentSearch onSubmit={e => e.preventDefault()}>
+    <StyledHomeSearch onSubmit={e => e.preventDefault()}>
       <SearchIconWrapper>
         <SearchIcon color={'#fff'}/>
       </SearchIconWrapper>
@@ -52,7 +52,7 @@ export const ContentSearch = () => {
         type="text"
         placeholder="Search for a country..." 
       />
-    </StyledContentSearch>
+    </StyledHomeSearch>
   )
 }
 

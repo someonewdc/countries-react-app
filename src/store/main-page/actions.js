@@ -1,8 +1,7 @@
 import * as types from '../types'
 
 export const requestCountries = () => ({ 
-  type: types.REQUEST_COUNTRIES,
-  payload: 'hello'
+  type: types.REQUEST_COUNTRIES
 }) 
 
 export const recieveCountries = countries => ({ 

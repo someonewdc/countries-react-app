@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { rootReducer } from './store/rootReducer'
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga'
-import { watchRequestCountries } from './store/sagas/main-saga';
+import { rootSaga } from './store/root-saga';
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -15,7 +15,7 @@ const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(sagaMiddleware)
 ));
 
-sagaMiddleware.run(watchRequestCountries)
+sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
   <Provider store={store}>

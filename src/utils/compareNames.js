@@ -1,13 +1,13 @@
-export const compareNames = (namesArray, determinant) => {
+export const compareNames = (namesArray, searchText) => {
   const result = []
 
-  const formatedWord = str =>  str.substring(0, determinant.length).toLowerCase()
+  const formatWordInName = str =>  str.substring(0, searchText.length).toLowerCase()
 
-  const formatedDeterminant = () => determinant.toLowerCase().trim()
+  const formatSearchText = () => searchText.toLowerCase().trim()
 
   namesArray
     .forEach(item => item.name.split(' ')
-    .forEach(word => formatedWord(word) === formatedDeterminant() ? result.push(item) : null))
+    .forEach(wordInName => formatWordInName(wordInName) === formatSearchText() ? result.push(item) : null))
 
   return result
 }

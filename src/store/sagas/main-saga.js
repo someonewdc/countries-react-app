@@ -1,11 +1,11 @@
 import { put, call, takeEvery } from 'redux-saga/effects'
 import { REQUEST_COUNTRIES } from '../types';
 import { recieveCountries, invalidateCountries } from '../main-page/actions';
-import { fetchApi } from '../../fetch/fetchApi';
+import { fetchAllCountries } from '../../fetchApi/fetchApi';
 
-export function* workerRequestCountries() {
+function* workerRequestCountries() {
   try {
-    const data = yield call(fetchApi)
+    const data = yield call(fetchAllCountries)
     yield put(recieveCountries(data))
 
   } catch (err) {
@@ -15,6 +15,6 @@ export function* workerRequestCountries() {
   }
 }
 
-export function* watchRequestCountries() {
+export function* watcherRequestCountries() {
   yield takeEvery(REQUEST_COUNTRIES, workerRequestCountries)
 }

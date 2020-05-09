@@ -1,0 +1,1 @@
+export const formatCountryName = word => word.split(' ').join('').toLowerCase()

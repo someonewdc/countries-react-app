@@ -10,7 +10,7 @@ const transform = keyframes`
   }
 `
 
-const StyledComponent = styled.div`
+const StyledLoader = styled.div`
 display: inline-block;
 position: relative;
 width: 80px;
@@ -43,10 +43,10 @@ height: 80px;
 `
 
 export const Loader = () => (
-    <StyledComponent>
+    <StyledLoader>
       <div/>
       <div/>
       <div/>
       <div/>
-    </StyledComponent>
+    </StyledLoader>
 )
