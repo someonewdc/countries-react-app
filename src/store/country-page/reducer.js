@@ -13,7 +13,7 @@ export const countryPageReducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: true
       }
-    case types.RECIEVE_COUNTRY:
+    case types.RECEIVE_COUNTRY:
       return {
         ...state,
         loading: false,

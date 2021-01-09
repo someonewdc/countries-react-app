@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {StyledComponent} from 'styled-components'
 import { Link } from 'react-router-dom';
 
-const StyledNoMatch = styled.div`
+const StyledNoMatch: StyledComponent<'div', any> = styled.div`
   height: calc(100vh - 80px);
   background: hsl(207, 26%, 17%);
   color: hsl(0, 0%, 100%);
@@ -27,7 +27,7 @@ const StyledLink = styled(Link)`
   padding: 10px;
 `
 
-export const NoMatch = () => (
+export const NoMatch = (): JSX.Element => (
   <StyledNoMatch>
     <span>404</span>Page not found
     <StyledLink to="/">Main page</StyledLink>

@@ -1,7 +1,7 @@
-import * as types from '../types'
+import {Country, MainPageState, MainPageTypes} from './'
 import { compareNames } from "../../utils/compareNames";
 
-const initialState = {
+const initialState: MainPageState = {
   countries: [],
   showingCountries: [],
   loading: false,
@@ -11,40 +11,44 @@ const initialState = {
   isPlaceholder: true,
 }
 
-export const mainPageReducer = (state = initialState, { type, payload }) => {
+export const mainPageReducer = (
+  state = initialState,
+  { type, payload }: { type: string, payload: unknown}
+) => {
+  console.log(payload)
   switch(type) {
-    case types.REQUEST_COUNTRIES: 
+    case MainPageTypes.REQUEST_COUNTRIES:
       return {
         ...state,
         error: false,
         loading: true
       }
-    case types.RECIEVE_COUNTRIES: 
+    case MainPageTypes.RECEIVE_COUNTRIES:
       return {
         ...state,
         error: false,
         loading: false,
         countries: payload
       }
-    case types.INVALIDATE_COUNTRIES:
+    case MainPageTypes.INVALIDATE_COUNTRIES:
       return {
         ...state,
         error: true,
         loading: false
       }
-    case types.SET_SEARCH_TEXT:
+    case MainPageTypes.SET_SEARCH_TEXT:
       return {
         ...state,
         searchText: payload,
         showingCountries: payload ? compareNames(state.countries, payload) : [],
-        isPlaceholder: !payload ? true : false, 
+        isPlaceholder: !!payload,
         region: ''
       }
-    case types.SET_REGION: 
+    case MainPageTypes.SET_REGION:
       return {
         ...state,
         region: payload,
-        showingCountries: state.countries.filter(country => country.region === payload),
+        showingCountries: state.countries.filter((country: Country) => country.region === payload),
         searchText: '',
         isPlaceholder: false
       }

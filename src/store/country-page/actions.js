@@ -6,7 +6,7 @@ export const requestCountry = name => ({
 }) 
 
 export const recieveCountry = countries => ({ 
-  type: types.RECIEVE_COUNTRY,
+  type: types.RECEIVE_COUNTRY,
   payload: countries
 }) 
 
